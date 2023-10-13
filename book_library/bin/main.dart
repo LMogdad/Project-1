@@ -1,5 +1,6 @@
-import 'package:book_library/book_library.dart' as book_library;
+import 'package:book_library/classes.dart' as classes;
 import 'dart:io';
+
 void main(List<String> arguments) {
   bool isTerminated = false;
   while(!isTerminated){
@@ -16,6 +17,9 @@ void main(List<String> arguments) {
     switch(userInput){
       //search
       case 1: {
+        classes.Book ko = classes.Book();
+        ko.queryBooks("Hogarth Press");
+        ko.queryBooks("198414");
       }
       break;
       //add book

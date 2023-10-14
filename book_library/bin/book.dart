@@ -16,23 +16,45 @@ class Book {
     copies--;
   }
 
-  void editBookInfo() {
-
+  void editTitle(String title){
+    this.title = title;
   }
 
-  void purchase() {
-    copies--;
+  void editAuthor(String author){
+    this.author = author;
   }
 
-  void displayAllBookCategories() {
+  void editCategory(String category){
+    this.category = category;
+  }
 
+  void editCopies(int copies){
+    if(copies >= 0) {
+      this.copies = copies;
+    } else {
+      print("cannot be less than 0");
+    }
+  }
+
+  void editPrise(double price){
+    if(price > 0) {
+      this.price = price;
+    } else {
+      print("cannot be less than 0");
+    }
+  }
+
+  bool purchase(int copies) {
+    if(this.copies - copies >= 0){
+      this.copies -= copies;
+      print ("total cost: ${copies * price}\$");
+      return true;
+    } else {
+      return false;
+    }
   }
 
   void printBook() {
     print("ID: $id Title: $title Auther: $author Category: $category Copies: $copies Price: $price\$");
-  }
-
-  void printInvoice() {
-    print("ID: $id Title: $title Price: $price\$");
   }
 }

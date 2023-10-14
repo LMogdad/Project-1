@@ -17,7 +17,7 @@ void addNewBook(List<Book> bookList) {
     print("The category: ");
     String? category = stdin.readLineSync() ?? "";
     print("The price: \$");
-    double price = 0;
+    late double price;
     bool isCorrect = false;
     while (!isCorrect) {
       try {
@@ -35,6 +35,6 @@ void addNewBook(List<Book> bookList) {
       copies: 1,
       price: price,
     ));
-    print("$title has been added");
   }
+  print("$title has been added");
 }

@@ -70,10 +70,13 @@ void editBookInfo(List<Book> bookList) {
           book.editPrise(price);
           break;
         default:
+          print("Apologies, please re-enter an integer from the available options.");
       }
     }
   }
   if (!isFound) {
     print("Sorry, the book '$searchKey' could not be found in the library.");
+  } else {
+    print("Changes have been successfully applied.");
   }
 }

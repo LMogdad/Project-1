@@ -9,7 +9,18 @@ void addNewBook(List<Book> bookList) {
   // Check if the book already exists in the library
   for (var book in bookList) {
     if (book.title == title) {
-      book.addCopy(); // If the book exists, increase the copy count
+      print("Enter the number of copies you want to add:");
+      late int copies;
+      bool isCorrect = false;
+        while (!isCorrect) {
+          try {
+            copies = int.parse(stdin.readLineSync()!);
+            isCorrect = true;
+          } catch (error) {
+            print("The number of copies must be a number.");
+          }
+        }
+      book.addCopy(copies); // If the book exists, increase the copy count
       isFound = true;
     }
   }
@@ -29,6 +40,18 @@ void addNewBook(List<Book> bookList) {
         print("The price must be a number: \$");
       }
     }
+
+    print("Enter the number of copies you want to add:");
+    late int copies;
+    isCorrect = false;
+    while (!isCorrect) {
+      try {
+        copies = int.parse(stdin.readLineSync()!);
+        isCorrect = true;
+      } catch (error) {
+        print("The number of copies must be a number.");
+      }
+    }
     
     // Add the new book to the library
     bookList.add(Book(
@@ -36,10 +59,11 @@ void addNewBook(List<Book> bookList) {
       title: title,
       author: author,
       category: category,
-      copies: 1,
+      copies: copies,
       price: price,
     ));
   }
+  
   // Confirm that the book has been added
   print("$title has been added to the library.");
 }

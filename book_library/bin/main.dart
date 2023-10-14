@@ -7,6 +7,7 @@ import 'delete_book.dart';
 import 'purchase_book.dart';
 import 'edit_book_information.dart';
 import 'display_book_categories.dart';
+import 'generate_report.dart';
 
 void main(List<String> arguments) {
   bool isTerminated = false;
@@ -65,7 +66,7 @@ void main(List<String> arguments) {
         displayBookCategories(bookList);
         break;
       case 7:
-        //generateReport(bookList);
+        generateReport(bookList);
         break;
       case 8: 
         isTerminated = true;

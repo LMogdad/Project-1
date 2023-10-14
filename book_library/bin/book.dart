@@ -4,6 +4,7 @@ class Book {
   late String author;
   late String category;
   late int copies;
+  late int purchasedCopies;
   late double price;
   
   Book({
@@ -12,17 +13,29 @@ class Book {
     required this.author,
     required this.category,
     required this.copies,
-    required this.price
+    required this.price,
+    this.purchasedCopies = 0
   });
   
   // Increase the number of copies of this book
-  void addCopy() {
-    copies++; 
+  void addCopy(int copies) {
+    if(copies > 0){
+      this.copies += copies;
+    } else {
+      print("Sorry, copies added should be positive number");
+    }
   }
 
   // Decrease the number of copies of this book
-  void deleteCopy() {
-    copies--;
+  void deleteCopy(int copies) {
+    if (copies > 0){
+      this.copies -= copies;
+      if(this.copies < 0) {
+        this.copies = 0;
+      }
+    } else {
+      print("Sorry, copies added should be positive number");
+    }
   }
 
   // Edit the title of this book
@@ -62,16 +75,32 @@ class Book {
   bool purchase(int copiesToPurchase) {
     if(copies - copiesToPurchase >= 0){
       copies -= copiesToPurchase;
+      purchasedCopies += copiesToPurchase;
       double totalCost = copiesToPurchase * price;
-      print ("Purchased $copiesToPurchase copies of $title for $totalCost\$.");
+      print ("Invoice: Purchased $copiesToPurchase copies of $title for $totalCost\$.");
       return true;
     } else {
       return false;
     }
   }
+
+  // Generate a report for a book's sales
+  double report() {
+    if(purchasedCopies > 0) {
+      double totalCost = purchasedCopies * price;
+      print("Title: '$title' $purchasedCopies copies sold for a total of $totalCost\$");
+      return totalCost;
+    }
+    // If no copies were purchased, return 0 as the total cost
+    return 0;
+  }
  
   // Print the details of this book
   void printBook() {
-    print("ID: $id Title: $title Auther: $author Category: $category Copies: $copies Price: $price\$");
+    if (copies != 0){
+      print("ID: $id Title: $title Auther: $author Category: $category Copies: $copies Price: $price\$");
+    } else {
+      print("Sorry, no books were found in the library.");
+    }
   }
 }

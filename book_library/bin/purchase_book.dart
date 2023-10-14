@@ -6,7 +6,6 @@ void purchaseBook(List<Book> bookList) {
   print("Please enter the title of the book you want to purchase: ");
   String? title = stdin.readLineSync() ?? "";
   bool isFound = false;
-  bool soldOut = false;
   bool isPurchased;
   late int copies;
 
@@ -23,9 +22,6 @@ void purchaseBook(List<Book> bookList) {
         }
       }
       isPurchased = book.purchase(copies);
-      if (book.copies == 0) {
-        soldOut = true;
-      }
       isFound = true;
       if(!isPurchased){
         print("Not enough copies in stock to fulfill this purchase.");
@@ -34,8 +30,5 @@ void purchaseBook(List<Book> bookList) {
   }
   if (!isFound) {
     print("Sorry, the book '$title' could not be found in the library.");
-  }
-  if (soldOut) {
-    bookList.removeWhere((deletedBook) => deletedBook.title == title);
   }
 }

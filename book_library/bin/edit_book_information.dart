@@ -1,20 +1,23 @@
 import 'book.dart';
 import 'dart:io';
 
+// Function to edit book information
 void editBookInfo(List<Book> bookList) {
-  print("Enter the title of the book:");
+  print("Enter the title of the book you want to edit:");
   int? userInput;
   String? searchKey = stdin.readLineSync() ?? "";
   bool isFound = false;
+  
   for (var book in bookList) {
     if (book.title == searchKey) {
-      book.printBook();
-      print("chose menu");
-      print("1.Change title");
-      print("2.Change author");
-      print("3.Change category");
-      print("4.Change number of copies");
-      print("5.Change price");
+      book.printBook(); // Display the book's current information
+      print("Choose an option to edit:");
+      print("1. Change title");
+      print("2. Change author");
+      print("3. Change category");
+      print("4. Change number of copies");
+      print("5. Change price");
+
       try {
         userInput = int.parse(stdin.readLineSync()!);
       } catch(error) {
@@ -24,22 +27,22 @@ void editBookInfo(List<Book> bookList) {
       isFound = true;
       switch(userInput) {
         case 1:
-          print("chose title");
+          print("Enter the new title:");
           String? title = stdin.readLineSync() ?? "";
           book.editTitle(title);
           break;
         case 2:
-          print("chose auther");
+          print("Enter the new author:");
           String? author = stdin.readLineSync() ?? "";
           book.editAuthor(author);
           break;
         case 3:
-          print("chose category");
+          print("Enter the new category:");
           String? category = stdin.readLineSync() ?? "";
           book.editCategory(category);
           break;
         case 4:
-          print("chose coppies");
+          print("Enter the new number of copies:");
           late int copies;
           bool isCorrect = false;
           while (!isCorrect) {
@@ -47,13 +50,13 @@ void editBookInfo(List<Book> bookList) {
               copies = int.parse(stdin.readLineSync()!);
               isCorrect = true;
             } catch (error) {
-              print("The coppies must be a number: \$");
+              print("The number of copies must be a number.");
             }
           }
           book.editCopies(copies);
           break;
         case 5:
-          print("chose prise");
+          print("Enter the new price:");
           late double price;
           bool isCorrect = false;
           while (!isCorrect) {
@@ -61,7 +64,7 @@ void editBookInfo(List<Book> bookList) {
               price = double.parse(stdin.readLineSync()!);
               isCorrect = true;
             } catch (error) {
-              print("The price must be a number: \$");
+              print("The price must be a number:");
             }
           }
           book.editPrise(price);
@@ -71,6 +74,6 @@ void editBookInfo(List<Book> bookList) {
     }
   }
   if (!isFound) {
-    print("Sorry, the book could not be found.");
+    print("Sorry, the book '$searchKey' could not be found in the library.");
   }
 }

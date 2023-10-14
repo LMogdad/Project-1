@@ -1,8 +1,9 @@
 import 'book.dart';
 import 'dart:io';
 
+// Function to delete a book from the library
 void deleteBook(List<Book> bookList) {
-  print("Please enter the title of the book: ");
+  print("Please enter the title of the book you want to delete: ");
   String? title = stdin.readLineSync() ?? "";
   bool isFound = false;
   bool soldOut = false;
@@ -13,13 +14,14 @@ void deleteBook(List<Book> bookList) {
         soldOut = true;
       }
       isFound = true;
-      print("$title has been deleted");
+      print("$title has been deleted from the library.");
     }
   }
   if (!isFound) {
-    print("Sorry, the book could not be found.");
+    print("Sorry, the book '$title' could not be found in the library.");
   }
   if (soldOut) {
     bookList.removeWhere((deletedBook) => deletedBook.title == title);
+    print("$title has been removed from the library because it is sold out.");
   }
 }

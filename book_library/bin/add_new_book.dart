@@ -5,18 +5,20 @@ void addNewBook(List<Book> bookList) {
   print("Please enter the title of the book: ");
   String? title = stdin.readLineSync() ?? "";
   bool isFound = false;
+
+  // Check if the book already exists in the library
   for (var book in bookList) {
     if (book.title == title) {
-      book.addCopy();
+      book.addCopy(); // If the book exists, increase the copy count
       isFound = true;
     }
   }
   if (!isFound) {
-    print("The author: ");
+    print("Please enter the author: ");
     String? author = stdin.readLineSync() ?? "";
-    print("The category: ");
+    print("Please enter the category: ");
     String? category = stdin.readLineSync() ?? "";
-    print("The price: \$");
+    print("Please enter the price: \$");
     late double price;
     bool isCorrect = false;
     while (!isCorrect) {
@@ -27,6 +29,8 @@ void addNewBook(List<Book> bookList) {
         print("The price must be a number: \$");
       }
     }
+    
+    // Add the new book to the library
     bookList.add(Book(
       id: bookList.last.id + 1,
       title: title,
@@ -36,5 +40,6 @@ void addNewBook(List<Book> bookList) {
       price: price,
     ));
   }
-  print("$title has been added");
+  // Confirm that the book has been added
+  print("$title has been added to the library.");
 }
